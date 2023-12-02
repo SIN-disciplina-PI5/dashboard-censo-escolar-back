@@ -1,1 +1,25 @@
+application:
+  title: School Census
+  version: 0.0.1
 
+server:
+  port: 8080
+  servlet:
+    context-path: /school-census/api
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    platform: postgres
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+
+client:
+  name: MachineLearningModel
+  url: http://localhost:5000
