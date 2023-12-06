@@ -6,6 +6,8 @@ server:
   port: 8080
   servlet:
     context-path: /school-census/api
+  tomcat:
+    max-max-swallow-size: 100MB
 
 spring:
   jpa:
@@ -19,6 +21,10 @@ spring:
     url: ${DB_URL}
     username: ${DB_USER}
     password: ${DB_PASS}
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 client:
   name: MachineLearningModel
