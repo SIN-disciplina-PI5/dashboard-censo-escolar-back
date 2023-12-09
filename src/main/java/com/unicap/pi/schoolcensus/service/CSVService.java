@@ -1,5 +1,7 @@
 package com.unicap.pi.schoolcensus.service;
 
+import com.unicap.pi.schoolcensus.entity.CSVParams;
+import com.unicap.pi.schoolcensus.repository.CSVRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -10,19 +12,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CSVService {
-    public Object processCsv(MultipartFile multipartFile) throws IOException {
+    private final CSVRepository repository;
+
+    public List<CSVParams> processCsv(MultipartFile multipartFile) throws IOException {
+        List<CSVParams> csvParamsList = new ArrayList<>();
         InputStream file = multipartFile.getInputStream();
-        try(CSVParser csvParser = new CSVParser(new InputStreamReader(file), CSVFormat.DEFAULT)){
+        try(CSVParser csvParser = new CSVParser(new InputStreamReader(file), CSVFormat.DEFAULT.withHeader().withDelimiter(';'))){
             for (CSVRecord record : csvParser) {
-                System.out.println(record.get(0));
+                CSVParams csv = new CSVParams(record);
+                csvParamsList.add(csv);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        this.repository.saveAll(csvParamsList);
+        return csvParamsList;
     }
 }
