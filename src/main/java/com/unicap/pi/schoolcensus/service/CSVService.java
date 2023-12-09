@@ -26,7 +26,7 @@ public class CSVService {
     public List<CSVParams> processCsv(MultipartFile multipartFile) throws IOException {
         List<CSVParams> csvParamsList = new ArrayList<>();
         InputStream file = multipartFile.getInputStream();
-        try(CSVParser csvParser = new CSVParser(new InputStreamReader(file), CSVFormat.DEFAULT.withHeader().withDelimiter(';'))){
+        try(CSVParser csvParser = new CSVParser(new InputStreamReader(file), format())){
             for (CSVRecord record : csvParser) {
                 CSVParams csv = new CSVParams(record);
                 csvParamsList.add(csv);
@@ -37,4 +37,9 @@ public class CSVService {
         this.repository.saveAll(csvParamsList);
         return csvParamsList;
     }
+
+    private CSVFormat format() {
+        return CSVFormat.Builder.create().setDelimiter(';').setHeader().build();
+    }
+
 }
