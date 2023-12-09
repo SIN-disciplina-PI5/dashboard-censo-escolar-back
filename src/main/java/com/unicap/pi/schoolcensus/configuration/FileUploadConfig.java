@@ -12,7 +12,6 @@ public class FileUploadConfig {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        // Defina o limite máximo de tamanho para o upload de arquivos (por exemplo, 10MB)
 
         factory.setMaxFileSize(DataSize.ofMegabytes(200l));
         factory.setMaxRequestSize(DataSize.ofMegabytes(200l));

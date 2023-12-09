@@ -23,7 +23,6 @@ public class CSVResource {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<List<CSVParams>> upload(@RequestParam("file") MultipartFile file) throws IOException {
-
         return ResponseEntity.ok(this.csvResourceService.processCsv(file));
     }
 }

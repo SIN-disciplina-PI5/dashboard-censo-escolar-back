@@ -3,6 +3,8 @@ package com.unicap.pi.schoolcensus.service;
 import com.unicap.pi.schoolcensus.entity.CSVParams;
 import com.unicap.pi.schoolcensus.repository.CSVRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CSVService {
     private final CSVRepository repository;
 
@@ -29,7 +32,7 @@ public class CSVService {
                 csvParamsList.add(csv);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         this.repository.saveAll(csvParamsList);
         return csvParamsList;
