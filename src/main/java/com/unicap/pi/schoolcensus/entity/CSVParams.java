@@ -50,4 +50,5 @@ public class CSVParams {
         this.inVinculoOutroOrgao = Integer.parseInt(record.get("IN_VINCULO_OUTRO_ORGAO"));
 
     }
+    public CSVParams(){}
 }
