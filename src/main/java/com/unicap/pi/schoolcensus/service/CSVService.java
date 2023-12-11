@@ -38,6 +38,10 @@ public class CSVService {
         return csvParamsList;
     }
 
+    public List<CSVParams> listAll() {
+        return this.repository.findAll();
+    }
+
     private CSVFormat format() {
         return CSVFormat.Builder.create().setDelimiter(';').setHeader().build();
     }
