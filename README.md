@@ -27,9 +27,9 @@ mvn clean install
 ```
 
 - Também é necessário configurar variáveis de ambiente no projeto para possibilitar a conexão com o banco de dados:
-  - DB_URL: String de conexão da database
-  - DB_USER: Usuário da database
-  - DB_PASS: Senha da database
+  - **DB_URL**: String de conexão da database
+  - **DB_USER**: Usuário da database
+  - **DB_PASS**: Senha da database
 
 - Feito isso, basta executar o projeto via IDE ou cmd
 
