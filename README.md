@@ -50,5 +50,5 @@ conda activate myenv
 - Por fim, vamos instalar as bibliotecas utilizadas no projeto:
 
 ```
-conda install flask flask-cors pickle
+conda install flask flask-cors scikit-learn==1.2.2
 ```
